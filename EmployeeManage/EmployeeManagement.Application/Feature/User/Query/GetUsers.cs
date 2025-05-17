@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement.Application.Common.Extensions;
 using EmployeeManagement.Application.Common.Helper;
 using EmployeeManagement.Application.Contracts.Infrastructure.Persistent;
+using EmployeeManagement.Application.Feature.Common;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -17,26 +18,35 @@ namespace EmployeeManagement.Application.Feature.User.Query;
 
 public static class GetUsers
 {
-    public record GetUsersQuery() : IRequest<List<GetUsersResponse>>;
+    public record GetUsersQuery(int PageNumber = 1, int PageSize = 10) : IRequest<PagedResponse<GetUsersResponse>>;
 
     public record GetUsersResponse
     {
         public int Id { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
+        public int TeamId { get; set; }
         public int Role { get; set; }
         
     }
 
     public class GetUsersHandler(IUserRepository userRepository)
-        : IRequestHandler<GetUsersQuery, List<GetUsersResponse>>
+      : IRequestHandler<GetUsersQuery, PagedResponse<GetUsersResponse>>
     {
         private readonly IUserRepository _userRepository = userRepository;
 
-        public async Task<List<GetUsersResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<GetUsersResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            var users = await _userRepository.GetAsync();
-            return users.Adapt<List<GetUsersResponse>>();
+            var (users, totalCount) = await _userRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
+
+            var responseData = users.Adapt<List<GetUsersResponse>>();
+
+            return new PagedResponse<GetUsersResponse>(
+                responseData,
+                request.PageNumber,
+                request.PageSize,
+                totalCount
+            );
         }
     }
 }

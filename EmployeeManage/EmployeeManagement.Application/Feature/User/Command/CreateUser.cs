@@ -25,8 +25,10 @@ public static class CreateUser
     public record CreateUserCommand : IRequest<CreateUserResponse>
     {
         public string FullName { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
         public string Email { get; set; }
         public int RoleId { get; set; }
+        public int TeamId { get; set; }
 
     }
 

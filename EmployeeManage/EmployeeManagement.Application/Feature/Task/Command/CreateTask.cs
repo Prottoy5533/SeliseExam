@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeManagement.Application.Feature.Task
+namespace EmployeeManagement.Application.Feature.Task.Command
 {
     public static class CreateTask
     {

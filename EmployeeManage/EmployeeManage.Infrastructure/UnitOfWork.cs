@@ -28,27 +28,7 @@ namespace EmployeeManage.Infrastructure
             await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                foreach (var entry in _context.ChangeTracker.Entries<AuditableEntity>())
-                {
-                    switch (entry.State)
-                    {
-                        case EntityState.Added:
-                            {
-
-                                entry.Entity.CreatedBy = _currentUserService.UserId ?? "";
-                                entry.Entity.Created = DateTime.UtcNow;
-                                break;
-                            }
-                        case EntityState.Modified:
-                            {
-                                entry.Entity.LastModifiedBy = _currentUserService.UserId ?? "";
-                                entry.Entity.LastModified =DateTime.UtcNow;
-                                break;
-                            }
-                        case EntityState.Deleted:
-                            break;
-                    }
-                }
+                
                 var affectedRows = await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 return affectedRows;
