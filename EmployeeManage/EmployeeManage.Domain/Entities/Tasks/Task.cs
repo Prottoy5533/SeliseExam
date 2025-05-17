@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManage.Domain.Entities.Tasks
 {
-    public class TaskItem:AuditableEntity
+    public class Task:AuditableEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }
