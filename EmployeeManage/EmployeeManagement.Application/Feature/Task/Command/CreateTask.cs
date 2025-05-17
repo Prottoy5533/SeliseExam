@@ -62,7 +62,7 @@ namespace EmployeeManagement.Application.Feature.Task
                 if (!_currentUser.Roles?.Split(',').Contains(Role.Manager.ToString()) ?? true)
                     throw new UnauthorizedAccessException("Only managers can create tasks.");
 
-                var task = request.Adapt<EmployeeManage.Domain.Entities.Tasks.Task>();
+                var task = request.Adapt<EmployeeManage.Domain.Entities.Tasks.ProjectTask>();
                 task.CreatedByUserId = Convert.ToInt16( _currentUser.UserId);
 
                 await _taskRepository.AddAsync(task);

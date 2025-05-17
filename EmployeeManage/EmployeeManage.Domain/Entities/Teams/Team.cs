@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManage.Domain.Entities.Teams
 {
-    public class Team :AuditableEntity
+    public class Team 
     {
         public int Id { get; set; }
         public string Name { get; set; }

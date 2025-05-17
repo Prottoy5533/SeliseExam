@@ -9,11 +9,11 @@ using EmployeeManage.Domain.Entities.Tasks;
 
 namespace EmployeeManage.Infrastructure.Configurations.Task
 {
-    public class TaskConfiguration : IEntityTypeConfiguration<Domain.Entities.Tasks.Task>
+    public class TaskConfiguration : IEntityTypeConfiguration<Domain.Entities.Tasks.ProjectTask>
     {
-        public void Configure(EntityTypeBuilder<Domain.Entities.Tasks.Task> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Tasks.ProjectTask> builder)
         {
-            builder.ToTable("TaskItems");
+            builder.ToTable("ProjectTask");
 
             builder.HasKey(x => x.Id);
             builder.Property(p => p.Description)

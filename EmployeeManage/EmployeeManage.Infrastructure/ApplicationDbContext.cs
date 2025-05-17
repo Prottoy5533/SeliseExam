@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EmployeeManage.Domain.Entities.Users;
 using EmployeeManage.Domain.Entities.Teams;
+using EmployeeManage.Domain.Entities.Tasks;
 
 namespace EmployeeManage.Infrastructure
 {
@@ -23,7 +24,7 @@ namespace EmployeeManage.Infrastructure
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
-        public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder builder)

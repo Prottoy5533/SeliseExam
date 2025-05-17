@@ -47,9 +47,9 @@ namespace EmployeeManage.Infrastructure
         {
             return new List<User>
         {
-            new User { Email = "admin@demo.com", PasswordHash = "Admin123!", Created = DateTime.UtcNow, CreatedBy = Constants.DefaultUser },
-            new User { Email = "manager@demo.com", PasswordHash = "Manager123!", Created = DateTime.UtcNow, CreatedBy = Constants.DefaultUser },
-            new User { Email = "employee@demo.com", PasswordHash = "Employee123!", Created = DateTime.UtcNow, CreatedBy = Constants.DefaultUser }
+            new User { Email = "admin@demo.com", PasswordHash = "Admin123!" },
+            new User {Email = "manager@demo.com", PasswordHash = "Manager123!"},
+            new User {Email = "employee@demo.com", PasswordHash = "Employee123!"}
         };
         }
 

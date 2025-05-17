@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EmployeeManage.Infrastructure.Repositories
 {
     public class TaskRepository(ApplicationDbContext context)
-: BaseRepository<EmployeeManage.Domain.Entities.Tasks.Task>(context), ITaskRepository
+: BaseRepository<EmployeeManage.Domain.Entities.Tasks.ProjectTask>(context), ITaskRepository
     {
     }
     

@@ -87,17 +87,4 @@ public static class CreateUser
     }
 }
 
-public class CreateuserEndpoints : BaseCarterModule
-{
-    public override void AddRoutes(IEndpointRouteBuilder app)
-    {
-        base.AddRoutes(app);
 
-        app.MapPost(EndpointConstants.User, async (CreateUserCommand command, ISender sender) =>
-        {
-            var response = await sender.Send(command);
-            return Results.Ok(response);
-        })
-        .WithApiVersionSet(ApiVersionSet);
-    }
-}

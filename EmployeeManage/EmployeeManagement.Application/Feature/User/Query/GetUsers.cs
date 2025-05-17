@@ -41,23 +41,4 @@ public static class GetUsers
     }
 }
 
-public class GetUsersEndpoints : BaseCarterModule
-{
-    public override void AddRoutes(IEndpointRouteBuilder app)
-    {
-        base.AddRoutes(app);
 
-        app.MapGet(EndpointConstants.User, async (ISender sender) =>
-        {
-            var query = new GetUsers.GetUsersQuery();
-            var result = await sender.Send(query);
-
-            if (result is null)
-                return Results.NotFound();
-
-            return Results.Ok(result);
-        })
-       
-       .WithApiVersionSet(ApiVersionSet);
-    }
-}

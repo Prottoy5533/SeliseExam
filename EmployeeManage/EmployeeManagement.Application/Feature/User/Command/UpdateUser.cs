@@ -97,17 +97,4 @@ public static class UpdateUser
     }
 }
 
-public class UpdateUserEndpoints : BaseCarterModule
-{
-    public override void AddRoutes(IEndpointRouteBuilder app)
-    {
-        base.AddRoutes(app);
 
-        app.MapPut(EndpointConstants.User, async (UpdateUserCommand command, ISender sender) =>
-        {
-            var response = await sender.Send(command);
-            return Results.Ok(response);
-        })
-        .WithApiVersionSet(ApiVersionSet);
-    }
-}
