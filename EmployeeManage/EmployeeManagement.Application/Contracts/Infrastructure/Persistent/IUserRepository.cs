@@ -9,6 +9,6 @@ namespace EmployeeManagement.Application.Contracts.Infrastructure.Persistent
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        Task<(List<User> Users, int TotalCount)> GetPaginatedAsync(int pageNumber, int pageSize);
+        Task<(List<User> Users, int TotalCount)> GetPaginatedAsync(int pageNumber, int pageSize, string sortBy, string sortDirection);
     }
 }

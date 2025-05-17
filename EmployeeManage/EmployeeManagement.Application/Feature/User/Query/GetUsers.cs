@@ -18,7 +18,10 @@ namespace EmployeeManagement.Application.Feature.User.Query;
 
 public static class GetUsers
 {
-    public record GetUsersQuery(int PageNumber = 1, int PageSize = 10) : IRequest<PagedResponse<GetUsersResponse>>;
+    public record GetUsersQuery(int PageNumber = 1,
+        int PageSize = 10,
+        string SortBy = "FullName",     
+        string SortDirection = "asc") : IRequest<PagedResponse<GetUsersResponse>>;
 
     public record GetUsersResponse
     {
@@ -31,13 +34,18 @@ public static class GetUsers
     }
 
     public class GetUsersHandler(IUserRepository userRepository)
-      : IRequestHandler<GetUsersQuery, PagedResponse<GetUsersResponse>>
+        : IRequestHandler<GetUsersQuery, PagedResponse<GetUsersResponse>>
     {
         private readonly IUserRepository _userRepository = userRepository;
 
         public async Task<PagedResponse<GetUsersResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            var (users, totalCount) = await _userRepository.GetPaginatedAsync(request.PageNumber, request.PageSize);
+            var (users, totalCount) = await _userRepository.GetPaginatedAsync(
+                request.PageNumber,
+                request.PageSize,
+                request.SortBy,
+                request.SortDirection
+            );
 
             var responseData = users.Adapt<List<GetUsersResponse>>();
 
