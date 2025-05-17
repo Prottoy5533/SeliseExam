@@ -13,7 +13,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeManagement.Application.Feature.User;
+namespace EmployeeManagement.Application.Feature.User.Query;
 
 public static class GetUsers
 {

@@ -16,9 +16,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static EmployeeManagement.Application.Feature.User.CreateUser;
+using static EmployeeManagement.Application.Feature.User.Command.CreateUser;
 
-namespace EmployeeManagement.Application.Feature.User;
+namespace EmployeeManagement.Application.Feature.User.Command;
 
 public static class CreateUser
 {

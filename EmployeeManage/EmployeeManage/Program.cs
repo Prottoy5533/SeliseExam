@@ -3,6 +3,8 @@ using Serilog;
 using EmployeeManagement.Application;
 using Carter;
 using EmployeeManage;
+using Microsoft.OpenApi.Models;
+using Asp.Versioning;
 
 
 
@@ -29,6 +31,16 @@ builder.Services.AddCarter();
 
 builder.Services.AddCustomAuthentication(builder.Configuration, builder.Environment.IsDevelopment());
 builder.Services.AddAuthorization();
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1);
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+})
+    .AddApiExplorer(options =>
+    {
+        options.GroupNameFormat = "'v'V";
+        options.SubstituteApiVersionInUrl = true;
+    });
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -61,9 +73,15 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddControllers();
+
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Configure the HTTP request pipeline.
 

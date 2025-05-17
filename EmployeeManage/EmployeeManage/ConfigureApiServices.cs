@@ -1,4 +1,7 @@
-﻿namespace EmployeeManage
+﻿using EmployeeManagement.Application.Common.Helper;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+namespace EmployeeManage
 {
     public static class ConfigureApiServices
     {
